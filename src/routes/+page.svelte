@@ -1,4 +1,6 @@
-
+<script>
+    import { page } from '$app/stores'
+</script>
 
 <div class="body">
 <div class="row">
@@ -8,6 +10,7 @@
 </div>
 <ul>
    <li><a href="/drake">Drake live follower count</a></li>
+   <li><a href="/playlist?code={$page.url.searchParams.get('code')}">Playlist of the day!</a></li>
 </ul>
 
 </div>
