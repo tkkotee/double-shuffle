@@ -1,7 +1,7 @@
 import { CLIENT_ID, CLIENT_SECRET } from '$env/static/private';
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ url, cookies }) {
+export async function load({ url, cookies}) {
     // Get access token from cookies
     let access_token = cookies.get('access_token');
     // Get refresh token from cookies
@@ -20,7 +20,7 @@ export async function load({ url, cookies }) {
             });
         let token = await response.json();
         access_token = token.access_token;
-        cookies.set('access_token', access_token, { path: '/' })
+        cookies.set('access_token', access_token!, { path: '/' })
     }
     // Get user data using access token
     let user_response = await fetch("https://api.spotify.com/v1/me", {
@@ -49,8 +49,8 @@ export async function load({ url, cookies }) {
         console.log(token);
         access_token = token.access_token;
         refresh_token = token.refresh_token;
-        cookies.set('access_token', access_token, { path: '/' });
-        cookies.set('refresh_token', refresh_token, { path: '/' });
+        cookies.set('access_token', access_token!, { path: '/' });
+        cookies.set('refresh_token', refresh_token!, { path: '/' });
         // Get user data using access token
         let new_user_response = await fetch("https://api.spotify.com/v1/me", {
             headers: {
