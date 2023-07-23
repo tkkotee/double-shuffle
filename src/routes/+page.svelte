@@ -1,2 +1,41 @@
-<h1>TK's Spotify Projects</h1>
-<a href="/drake">Drake live follower count</a>
+
+
+<div class="body">
+<div class="row">
+    <div class="heading">TK's Spotify Projects</div>
+    <div class="spacer"></div>
+    <a href="/login"><div class="button">Log in</div></a>
+</div>
+<ul>
+   <li><a href="/drake">Drake live follower count</a></li>
+</ul>
+
+</div>
+
+
+<style>
+    .body {
+        padding-top: 30px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    .row {
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 30px;
+    }
+
+    .spacer {
+        flex: 1;
+    }
+
+    .button {
+        font-size: 1.2em;
+        border: solid 1px black;
+    }
+
+    .heading {
+        font-size: 2em;
+        font-weight: 600;
+    }
+</style>

@@ -1,6 +1,6 @@
 import { CLIENT_SECRET, CLIENT_ID } from '$env/static/private';
 
-/** @type {import('./$types').PageLoad} */
+/** @type {import('./$types').PageServerLoad} */
 export async function load() {
     let response = await fetch("https://accounts.spotify.com/api/token",
         {
