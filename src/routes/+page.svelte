@@ -1,12 +1,20 @@
 <script>
     import { page } from '$app/stores'
+    export let data;
+    $: loggedIn = data.loggedIn;
+    $: name = data.name;
+    $: uid = data.uid;
 </script>
 
 <div class="body">
 <div class="row">
     <div class="heading">TK's Spotify Projects</div>
     <div class="spacer"></div>
-    <a href="/login"><div class="button">Log in</div></a>
+    {#if loggedIn}
+    <div class="button">{name}</div>
+    {:else}
+    <a href="/login"><div class="button">Log In</div></a>
+    {/if}
 </div>
 <ul>
    <li><a href="/drake">Drake live follower count</a></li>
