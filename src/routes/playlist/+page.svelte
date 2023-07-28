@@ -1,4 +1,9 @@
 <script>
     export let data;
 </script>
-<div>Your uid is: {data.uid}</div>
+<div>Your playlist names are:</div>
+<ul>
+    {#each data.names as playlist}
+        <div>{playlist}</div>
+    {/each}
+</ul>
