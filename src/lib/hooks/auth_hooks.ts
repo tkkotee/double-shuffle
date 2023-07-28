@@ -26,3 +26,4 @@ export async function getTokenFromRefresh(response: Response, cookies:Cookies) :
     cookies.set('refresh_token', refresh_token!, { path: '/' });
     return access_token;
 }
+

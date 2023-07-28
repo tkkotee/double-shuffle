@@ -1,5 +1,5 @@
 import { CLIENT_ID, CLIENT_SECRET } from '$env/static/private';
-import { getTokenFromCode, getTokenFromRefresh } from './hooks.js';
+import { getTokenFromCode, getTokenFromRefresh } from '../lib/hooks/auth_hooks.js';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ url, cookies }) {
