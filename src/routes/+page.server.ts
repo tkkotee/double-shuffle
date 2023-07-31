@@ -2,7 +2,7 @@ import { CLIENT_ID, CLIENT_SECRET } from '$env/static/private';
 import { getTokenFromCode, getTokenFromRefresh } from '../lib/hooks/auth_hooks.js';
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ url, cookies }) {
+export async function load({ url, cookies}) {
     // IF USER NOT LOGGED IN 
     if (url.searchParams.get('code') == null) {
         return {
