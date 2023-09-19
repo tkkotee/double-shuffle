@@ -1,8 +1,8 @@
-import { CLIENT_ID, CLIENT_SECRET } from '$env/static/private';
+import { CLIENT_ID, CLIENT_SECRET, SUPABASE_KEY } from '$env/static/private';
 import { getPlaylistOfTheDay } from '$lib/hooks/fetch_hooks';
 import { redirect } from '@sveltejs/kit';
 import { getTokenFromCode } from '../../lib/hooks/auth_hooks';
-// import { createClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js'
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ url, cookies }) {
@@ -17,8 +17,10 @@ export async function load({ url, cookies }) {
     // If there is an error with playlist retrieval, redirect back to home page.
     if (playlist.error == true) {
         throw redirect(302, `/?code=${url.searchParams.get('code')}`);
-    // Else load up the playlist name
-    } else {
-        return { playlist: playlist };
     }
+    //
+    const supabaseUrl = 'https://avoouqpxcaoxxiigxbpm.supabase.co';
+    const supabaseKey = SUPABASE_KEY;
+    const supabase = createClient(supabaseUrl, supabaseKey);
+    return { playlist: playlist };
 }
