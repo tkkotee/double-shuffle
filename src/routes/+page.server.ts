@@ -2,13 +2,13 @@ import { CLIENT_ID, CLIENT_SECRET } from '$env/static/private';
 import { getTokenFromCode, getTokenFromRefresh } from '../lib/hooks/auth_hooks.js';
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ url, cookies}) {
+export async function load({ url, cookies }): Promise<{ loggedIn: boolean; uid?: undefined; name?: undefined; } | { loggedIn: boolean; uid: any; name: any; }> {
     // IF USER NOT LOGGED IN 
     if (url.searchParams.get('code') == null) {
         return {
             loggedIn: false
         }
-    // IF USER LOGGED IN
+        // IF USER LOGGED IN
     } else {
         // Get access token from cookies
         let access_token = cookies.get('access_token');
@@ -28,7 +28,7 @@ export async function load({ url, cookies}) {
         if (user_response.status == 200) {
             let user = await user_response.json();
             return { loggedIn: true, uid: user.id, name: user.display_name };
-        // If call fails due to invalid access token, refresh access token and make call again
+            // If call fails due to invalid access token, refresh access token and make call again
         } else if (user_response.status == 401) {
             let response = await fetch("https://accounts.spotify.com/api/token",
                 {
@@ -42,7 +42,7 @@ export async function load({ url, cookies}) {
             // If call succeeds update access token
             if (response.status == 200) {
                 access_token = await getTokenFromRefresh(response, cookies);
-            // If refresh token invalid, generate new access token and refresh token.
+                // If refresh token invalid, generate new access token and refresh token.
             } else {
                 access_token = await getTokenFromCode(url, cookies, CLIENT_ID, CLIENT_SECRET);
             }

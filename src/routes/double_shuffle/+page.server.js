@@ -1,6 +1,7 @@
 import { CLIENT_ID, CLIENT_SECRET } from '$env/static/private';
 import { getPlaylistOfTheDay } from '$lib/hooks/fetch_hooks';
 import { getTokenFromCode, getTokenFromRefresh } from '../../lib/hooks/auth_hooks';
+import { createClient } from '@supabase/supabase-js'
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ url, cookies }) {
