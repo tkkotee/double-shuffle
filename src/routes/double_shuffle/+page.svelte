@@ -5,8 +5,8 @@
 <div>Your playlist of the day is:</div>
 <ul>
 	<div class="row">
-        <img src={data.playlist.url} alt="Flowers in Chania">
-		<div>{data.playlist.name}</div>
+        <img src={data.playlist?.url} alt="Flowers in Chania">
+		<div>{data.playlist?.name}</div>
 	</div>
 </ul>
 
