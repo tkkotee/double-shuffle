@@ -23,6 +23,7 @@
 	<ul>
 		<li><a href="/drake">Drake live follower count</a></li>
 		{#if loggedIn}
+		<!-- TODO: Should throw redirect if user is undefined (but logged in) -->
 			<li>
 				<a href="/playlist?code={$page.url.searchParams.get('code')}">Your Playlists</a>
 			</li>

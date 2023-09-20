@@ -1,4 +1,4 @@
-import { CLIENT_ID, CLIENT_SECRET, SUPABASE_KEY } from '$env/static/private';
+import { CLIENT_ID, CLIENT_SECRET, SUPABASE_KEY, SUPABASE_URL } from '$env/static/private';
 import { getPlaylistOfTheDay } from '$lib/hooks/fetch_hooks';
 import { redirect } from '@sveltejs/kit';
 import { getTokenFromCode } from '../../lib/hooks/auth_hooks';
@@ -12,16 +12,25 @@ export async function load({ url, cookies }) {
     if (access_token == undefined || access_token === '') {
         access_token = await getTokenFromCode(url, cookies, CLIENT_ID, CLIENT_SECRET);
     }
-    const supabaseUrl = 'https://avoouqpxcaoxxiigxbpm.supabase.co';
+    // Initialise supabase
+    const supabaseUrl = SUPABASE_URL;
     const supabaseKey = SUPABASE_KEY;
     const supabase = createClient(supabaseUrl, supabaseKey);
+    // Get user's spotify id
+    let uid = cookies.get('uid'); 
+    // Read the supabase entry with the user's id.
+    // Since all uid's are unique, can safely limit to 1 result.
     const { data } = await supabase
         .from('Playlist')
         .select('playlist')
-        .eq('id', 1);
+        .eq('uid', uid)
+        .limit(1)
+        .maybeSingle();
     let playlist_index;
+    // If data is returned, get the playlist of the day by indexing the user's
+    // list of playlists with the database value.
     if (data != null) {
-        playlist_index = data[0].playlist;
+        playlist_index = data.playlist;
         // Get the Playlist
         let playlist = await getPlaylistOfTheDay(access_token, playlist_index);
         // If there is an error with playlist retrieval, redirect back to home page.

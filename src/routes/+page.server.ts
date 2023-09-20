@@ -53,6 +53,10 @@ export async function load({ url, cookies }): Promise<{ loggedIn: boolean; uid?:
                 },
             },);
             let user = await new_user_response.json();
+            // Save user id to cookies. So that it can be used in subsequent 
+            // pages.
+            // TODO: Consider using query parameters
+            cookies.set('uid', user.id, { path: '/' });
             return { loggedIn: true, uid: user.id, name: user.display_name };
         } else {
             return { loggedIn: false }
