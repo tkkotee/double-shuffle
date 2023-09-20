@@ -17,7 +17,7 @@ export async function load({ url, cookies }) {
     const supabaseKey = SUPABASE_KEY;
     const supabase = createClient(supabaseUrl, supabaseKey);
     // Get user's spotify id
-    let uid = cookies.get('uid'); 
+    let uid = cookies.get('uid');
     // Read the supabase entry with the user's id.
     // Since all uid's are unique, can safely limit to 1 result.
     const { data } = await supabase
@@ -38,5 +38,28 @@ export async function load({ url, cookies }) {
             throw redirect(302, `/?code=${url.searchParams.get('code')}`);
         }
         return { playlist: playlist };
+        // TODO: Make playlist random int between 0 and 50.
+    } else {
+        await supabase
+            .from('Playlist')
+            .insert({ uid: uid, playlist: 0 });
+        // Read the supabase entry with the user's id.
+        // Since all uid's are unique, can safely limit to 1 result.
+        const { data } = await supabase
+            .from('Playlist')
+            .select('playlist')
+            .eq('uid', uid)
+            .limit(1)
+            .maybeSingle();
+        playlist_index = data?.playlist;
+        // Get the Playlist
+        let playlist = await getPlaylistOfTheDay(access_token, playlist_index);
+        // If there is an error with playlist retrieval, redirect back to home page.
+        if (playlist.error == true) {
+            throw redirect(302, `/?code=${url.searchParams.get('code')}`);
+        }
+        return { playlist: playlist };
     }
+    // TODO: Handle general error
+
 }
