@@ -2,12 +2,11 @@ import { CLIENT_ID, CLIENT_SECRET } from '$env/static/private';
 import { getTokenFromCode, getTokenFromRefresh } from '../lib/hooks/auth_hooks.js';
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ url, cookies }): Promise<{ loggedIn: boolean; uid?: undefined; name?: undefined; } | { loggedIn: boolean; uid: any; name: any; }> {
+export async function load({ url, cookies }): Promise<{ uid?: undefined; name?: undefined; } | { uid: any; name: any; }> {
     // IF USER NOT LOGGED IN 
     if (url.searchParams.get('code') == null) {
         return {
-            loggedIn: false
-        }
+        };
         // IF USER LOGGED IN
     } else {
         // Get access token from cookies
@@ -27,7 +26,7 @@ export async function load({ url, cookies }): Promise<{ loggedIn: boolean; uid?:
         // If call succeeds, return users info
         if (user_response.status == 200) {
             let user = await user_response.json();
-            return { loggedIn: true, uid: user.id, name: user.display_name };
+            return { uid: user.id, name: user.display_name };
             // If call fails due to invalid access token, refresh access token and make call again
         } else if (user_response.status == 401) {
             let response = await fetch("https://accounts.spotify.com/api/token",
@@ -55,11 +54,10 @@ export async function load({ url, cookies }): Promise<{ loggedIn: boolean; uid?:
             let user = await new_user_response.json();
             // Save user id to cookies. So that it can be used in subsequent 
             // pages.
-            // TODO: Consider using query parameters
             cookies.set('uid', user.id, { path: '/' });
-            return { loggedIn: true, uid: user.id, name: user.display_name };
+            return { uid: user.id, name: user.display_name };
         } else {
-            return { loggedIn: false }
+            return {};
         }
     }
 

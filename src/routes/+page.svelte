@@ -1,10 +1,11 @@
 <script>
 	import { page } from '$app/stores';
 	export let data;
-	$: loggedIn = data.loggedIn;
+	// Get the users name from when we load up the page
+	// Work out whether user is logged in from whether their name is undefined/null
+	// TODO: This assumes that a spoitfy user's name cannot be null/empty. Replace with uid to be more secure
 	$: name = data.name;
-	$: uid = data.uid;
-
+	$: loggedIn = name != undefined && name!=null;
     let alertLog = () => {
         alert("Log in before accessing this feature");
     };
@@ -23,7 +24,6 @@
 	<ul>
 		<li><a href="/drake">Drake live follower count</a></li>
 		{#if loggedIn}
-		<!-- TODO: Should throw redirect if user is undefined (but logged in) -->
 			<li>
 				<a href="/playlist?code={$page.url.searchParams.get('code')}">Your Playlists</a>
 			</li>
