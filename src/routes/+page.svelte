@@ -7,6 +7,7 @@
 	// Work out whether user is logged in from whether their name is undefined/null
 	// TODO: This assumes that a spoitfy user's name cannot be null/empty. Replace with uid to be more secure
 	$: name = data.name;
+	$: img = data.img;
 	$: loggedIn = name != undefined && name != null;
 	let alertLog = () => {
 		alert('Log in before accessing this feature');
@@ -17,7 +18,7 @@
 	<div class="row">
 		<Header />
 		<div class="spacer" />
-		<LogIn loggedIn={loggedIn} name={name}/>
+		<LogIn loggedIn={loggedIn} name={name} img={img}/>
 	</div>
 	<div class="text">
 		Supercharge your Spotify usage with our range of helpful tools. Interact with your favourite

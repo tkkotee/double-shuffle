@@ -2,7 +2,7 @@ import { CLIENT_ID, CLIENT_SECRET } from '$env/static/private';
 import { getTokenFromCode, getTokenFromRefresh } from '../lib/hooks/auth_hooks.js';
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ url, cookies }): Promise<{ uid?: undefined; name?: undefined; } | { uid: any; name: any; }> {
+export async function load({ url, cookies }): Promise<{ uid?: undefined; name?: undefined; img?: undefined } | { uid: string; name: string; img: string;}> {
     // IF USER NOT LOGGED IN 
     if (url.searchParams.get('code') == null) {
         return {
@@ -26,7 +26,7 @@ export async function load({ url, cookies }): Promise<{ uid?: undefined; name?: 
         // If call succeeds, return users info
         if (user_response.status == 200) {
             let user = await user_response.json();
-            return { uid: user.id, name: user.display_name };
+            return { uid: user.id, name: user.display_name, img: user.images[0].url };
             // If call fails due to invalid access token, refresh access token and make call again
         } else if (user_response.status == 401) {
             let response = await fetch("https://accounts.spotify.com/api/token",
@@ -55,7 +55,7 @@ export async function load({ url, cookies }): Promise<{ uid?: undefined; name?: 
             // Save user id to cookies. So that it can be used in subsequent 
             // pages.
             cookies.set('uid', user.id, { path: '/' });
-            return { uid: user.id, name: user.display_name };
+            return { uid: user.id, name: user.display_name, img: user.images[0].url };
         } else {
             return {};
         }
