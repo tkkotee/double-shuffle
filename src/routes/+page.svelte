@@ -1,5 +1,6 @@
 <script>
 	import { page } from '$app/stores';
+	import FeatureRow from '$lib/components/FeatureRow.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import LogIn from '$lib/components/LogIn.svelte';
 	export let data;
@@ -23,6 +24,9 @@
 	<div class="text">
 		Supercharge your Spotify usage with our range of helpful tools. Interact with your favourite
 		artists in brand new ways, and escape the all-powerful Spotify algorithm.
+	</div>
+	<div class="featureRow">
+		<FeatureRow />
 	</div>
 	<ul>
 		<li><a href="/drake">Drake live follower count</a></li>
@@ -58,11 +62,16 @@
 		align-items: center;
 	}
 
+	.featureRow {
+		padding-left: 10vw;
+		padding-right: 10vw;
+	}
+
 	.text {
 		font-size: 1.4em;
 		margin-top: 6vh;
-		margin-left: 20vw;
-		margin-right: 20vw;
+		margin-left: 15vw;
+		margin-right: 15vw;
 		margin-bottom: 5vh;
 	}
 

@@ -41,7 +41,7 @@
     }
 
 	img {
-		margin-right: 0.5vw;
+		margin-right: 0.75vw;
 		height: 4vh;
 	}
 
