@@ -1,14 +1,14 @@
 <script>
-    // TODO: Comment
+	// TODO: Comment
 	import { page } from '$app/stores';
 	import FeatureCard from './feature/FeatureCard.svelte';
 	/**
 	 * @type {boolean}
 	 */
 	export let loggedIn;
-    let alertLog = () => {
-        alert("Log in to access this feature");
-    }
+	let alertLog = () => {
+		alert('Log in to access this feature');
+	};
 </script>
 
 <div class="row">
@@ -37,22 +37,22 @@
 			/>
 		</a>
 	{:else}
-		<a href="/" class="rowItem" on:click={alertLog}>
+		<button class="rowItem" on:click={alertLog}>
 			<FeatureCard
 				title="Playlists"
 				img={{ src: '/icons/playlist.png', alt: 'Playlist' }}
 				content="Your playlists. Listed"
 				icon={true}
 			/>
-		</a>
-		<a href="/" class="rowItem" on:click={alertLog}>
+		</button>
+		<button class="rowItem" on:click={alertLog}>
 			<FeatureCard
 				title="Playlist of the Day"
 				img={{ src: '/icons/calendar.png', alt: 'Calendar' }}
 				content="Each day, we randomly select one of your playlists for you."
 				icon={true}
 			/>
-		</a>
+		</button>
 	{/if}
 </div>
 
@@ -65,6 +65,13 @@
 
 	.rowItem {
 		width: 27.5%;
+	}
+
+	button {
+		padding: 0;
+		border: none;
+		background: none;
+        cursor: pointer;
 	}
 
 	a {
