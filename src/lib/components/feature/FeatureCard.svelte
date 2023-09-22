@@ -1,4 +1,5 @@
 <script>
+	// TODO: Comment
 	/**
 	 * @type {string}
 	 */

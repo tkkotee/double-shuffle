@@ -1,4 +1,5 @@
 <script>
+	// TODO: Comment
 	import { page } from '$app/stores';
 	import FeatureRow from '$lib/components/FeatureRow.svelte';
 	import Header from '$lib/components/Header.svelte';
@@ -10,9 +11,6 @@
 	$: name = data.name;
 	$: img = data.img;
 	$: loggedIn = name != undefined && name != null;
-	let alertLog = () => {
-		alert('Log in before accessing this feature');
-	};
 </script>
 
 <div class="body">
@@ -26,28 +24,8 @@
 		artists in brand new ways, and escape the all-powerful Spotify algorithm.
 	</div>
 	<div class="featureRow">
-		<FeatureRow />
+		<FeatureRow loggedIn={loggedIn}/>
 	</div>
-	<ul>
-		<li><a href="/drake">Drake live follower count</a></li>
-		{#if loggedIn}
-			<li>
-				<a href="/playlist?code={$page.url.searchParams.get('code')}">Your Playlists</a>
-			</li>
-			<li>
-				<a href="/double_shuffle?code={$page.url.searchParams.get('code')}"
-					>Your Playlist of the Day</a
-				>
-			</li>
-		{:else}
-			<li>
-				<a href="/" on:click={alertLog}>Your Playlists</a>
-			</li>
-			<li>
-				<a href="/" on:click={alertLog}>Your Playlist of the Day</a>
-			</li>
-		{/if}
-	</ul>
 </div>
 
 <style>
