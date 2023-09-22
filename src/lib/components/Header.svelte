@@ -1,3 +1,4 @@
+<!-- Row of Double Shuffle Text and Logo-->
 <div class="row">
 	<div class="column">
 		<div class="topHeading">Double</div>
@@ -24,10 +25,12 @@
 	}
 
 	.topHeading {
+        /* Negative margin to allow overlap of two textblocks*/
 		margin-bottom: -1vh;
 	}
 
     .topImg {
+        /* Negative margin to allow overlap of two icons*/
         margin-bottom: -1.52vh;
     }
 

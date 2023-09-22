@@ -1,16 +1,18 @@
 <script>
-	// TODO: Comment
 	import { page } from '$app/stores';
 	import FeatureCard from './feature/FeatureCard.svelte';
+	// Is the user loggedIn
 	/**
 	 * @type {boolean}
 	 */
 	export let loggedIn;
+	// Function to alert user they must log in
 	let alertLog = () => {
 		alert('Log in to access this feature');
 	};
 </script>
 
+<!-- The row of cards with links to each of the double shuffle features-->
 <div class="row">
 	<a href="/drake" class="rowItem">
 		<FeatureCard
@@ -37,22 +39,23 @@
 			/>
 		</a>
 	{:else}
-		<button class="rowItem" on:click={alertLog}>
+		<!-- TODO: Work out a new way of doing this to avoid unnecessary link reloads-->
+		<a href="/" class="rowItem" on:click={alertLog}>
 			<FeatureCard
 				title="Playlists"
 				img={{ src: '/icons/playlist.png', alt: 'Playlist' }}
 				content="Your playlists. Listed"
 				icon={true}
 			/>
-		</button>
-		<button class="rowItem" on:click={alertLog}>
+		</a>
+		<a href="/" class="rowItem" on:click={alertLog}>
 			<FeatureCard
-				title="Playlist of the Day"
+				title="POTD"
 				img={{ src: '/icons/calendar.png', alt: 'Calendar' }}
-				content="Each day, we randomly select one of your playlists for you."
+				content="Your playlist of the day, randomly selected from your library!"
 				icon={true}
 			/>
-		</button>
+		</a>
 	{/if}
 </div>
 
@@ -67,17 +70,10 @@
 		width: 27.5%;
 	}
 
-	button {
-		padding: 0;
-		border: none;
-		background: none;
-        cursor: pointer;
-	}
-
 	a {
 		text-decoration: none;
 		margin: 0;
 		padding: 0;
-		color: black;
+		color: inherit;
 	}
 </style>

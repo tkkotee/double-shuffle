@@ -1,5 +1,4 @@
 <script>
-	// TODO: Comment
 	/**
 	 * @type {string}
 	 */
@@ -17,28 +16,31 @@
 	 */
 	export let icon = false;
 </script>
-<!-- TODO: Make sizing responsive. How to make all cards the same size. But make them size depending on the biggest sibling-->
 <div class="body">
+	<!-- Title of feature-->
 	<div class="title">{title}</div>
+	<!-- Image to display-->
 	{#if !icon}
 		<img class="image" src={img.src} alt={img.alt} />
 	{:else}
 		<img class="icon" src={img.src} alt={img.alt} />
 	{/if}
+	<!-- Description of feature-->
 	<div class="content">{content}</div>
 </div>
 
 <style>
 	.body {
 		background: white;
-		align-items: center;
-		justify-content: center;
 		border-radius: 10px;
-		height: 50vh;
-		min-height: 22.5vw;
+		box-shadow: 0px 3px 18.75px 0px rgba(0, 0, 0, 0.05);
+		/* Set a fixed height for cards so they are all the same height*/
+		height: 45vh;
 		display: flex;
 		flex-direction: column;
-		box-shadow: 0px 3px 18.75px 0px rgba(0, 0, 0, 0.05);
+		align-items: center;
+		justify-content: start;
+		padding-top: 5vh;
 		padding-left: 2vw;
 		padding-right: 2vw;
 	}
@@ -58,6 +60,11 @@
 		height: 15vh;
 		margin-top: 5vh;
 		margin-bottom: 5vh;
+	}
+
+	.content {
+		/* TODO: Make a function to properly size text*/
+		font-size: 1vw;
 	}
 
 </style>

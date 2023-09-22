@@ -1,6 +1,4 @@
 <script>
-	// TODO: Comment
-	import { page } from '$app/stores';
 	import FeatureRow from '$lib/components/FeatureRow.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import LogIn from '$lib/components/LogIn.svelte';
@@ -14,15 +12,18 @@
 </script>
 
 <div class="body">
+	<!--Top row of logo and log in button-->
 	<div class="row">
 		<Header />
 		<div class="spacer" />
 		<LogIn loggedIn={loggedIn} name={name} img={img}/>
 	</div>
+	<!--Intro text-->
 	<div class="text">
 		Supercharge your Spotify usage with our range of helpful tools. Interact with your favourite
 		artists in brand new ways, and escape the all-powerful Spotify algorithm.
 	</div>
+	<!--Row of feature cards-->
 	<div class="featureRow">
 		<FeatureRow loggedIn={loggedIn}/>
 	</div>
