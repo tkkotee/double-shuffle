@@ -48,10 +48,10 @@
 
 	.text {
 		font-size: 1.4em;
-		margin-top: 6vh;
+		margin-top: 8vh;
 		margin-left: 15vw;
 		margin-right: 15vw;
-		margin-bottom: 5vh;
+		margin-bottom: 10vh;
 	}
 
 	.spacer {

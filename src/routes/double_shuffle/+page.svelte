@@ -2,25 +2,35 @@
 	export let data;
 </script>
 
-<div>Your playlist of the day is:</div>
-<ul>
-	<div class="row">
-        <img src={data.playlist?.url} alt="Flowers in Chania">
-		<div>{data.playlist?.name}</div>
-	</div>
-</ul>
+<div class="column">
+    <div class="small">Your playlist of the day is:</div>
+    <img src={data.playlist?.url} alt="Flowers in Chania">
+    <div class="bold big">{data.playlist?.name}</div>
+</div>
 
 <style>
-    .row {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 20px;
-        font-size: 3em;
+    img {
+        height: 30vh;
+        margin-top: 10vh;
+        margin-bottom: 2.5vh;
+        border-radius: 5%;
+        backdrop-filter: blur(10px);
     }
 
-    img {
-        height: 100px;
-        width: 100px;
+	.big {
+        font-size: 2em;
+        margin-bottom: 10vh;
     }
+
+    .small {
+        font-size: 1.5em;
+    }
+
+	.column {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+        align-items: center;
+        height: 100vh;
+	}
 </style>
