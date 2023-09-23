@@ -21,6 +21,6 @@ serve(async (req) => {
 
 // To invoke:
 // curl -i --location --request POST 'https://avoouqpxcaoxxiigxbpm.supabase.co/functions/v1/playlist_update' \
-//   --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF2b291cXB4Y2FveHhpaWd4YnBtIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTUwNzMxOTksImV4cCI6MjAxMDY0OTE5OX0.HE8uTgXZ5k-FbXla4n6aCeYP_60QzWW__Up7s3S1oPg' \
+//   --header 'Authorization: Bearer <ANON-KEY>
 //   --header 'Content-Type: application/json' \
 //   --data '{"name":"Functions"}'
