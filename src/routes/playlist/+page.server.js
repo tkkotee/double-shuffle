@@ -20,8 +20,8 @@ export async function load({ url, cookies }) {
     },);
     // If call succeeds, return users playlists
     if (user_response.status == 200) {
-        let playlist_names = getPlaylists(access_token);
-        return { names: playlist_names };
+        let playlists = getPlaylists(access_token);
+        return { playlists: playlists };
         // If call fails due to invalid access token, refresh access token and make call again
     } else if (user_response.status == 401) {
         let response = await fetch("https://accounts.spotify.com/api/token",
@@ -36,9 +36,9 @@ export async function load({ url, cookies }) {
             });
         access_token = await getTokenFromRefresh(response, cookies);
         // Get user data using access token
-        let playlist_names = getPlaylists(access_token);
-        return { names: playlist_names };
+        let playlists = getPlaylists(access_token);
+        return { playlists: playlists };
     } else {
-        return { names: `Failed due to ${user_response.status}` }
+        return { playlists: `Failed due to ${user_response.status}` }
     }
 }

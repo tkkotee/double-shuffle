@@ -3,34 +3,47 @@
 </script>
 
 <div class="column">
-    <div class="small">Your playlist of the day is:</div>
-    <img src={data.playlist?.url} alt="Flowers in Chania">
-    <div class="bold big">{data.playlist?.name}</div>
+	<div class="small">Your playlist of the day is:</div>
+	<div style="height:10vh;" />
+	<a href={data.playlist?.spotify_url} class="subColumn" target="_blank">
+		<img src={data.playlist?.img_url} alt="Flowers in Chania" />
+		<div style="height:2.5vh;" />
+		<div class="bold big">{data.playlist?.name}</div>
+	</a>
+	<div style="height:10vh;" />
 </div>
 
 <style>
-    img {
-        height: 30vh;
-        margin-top: 10vh;
-        margin-bottom: 2.5vh;
-        border-radius: 5%;
-        backdrop-filter: blur(10px);
-    }
+	img {
+		height: 30vh;
+		border-radius: 5%;
+		backdrop-filter: blur(10px);
+	}
 
 	.big {
-        font-size: 2em;
-        margin-bottom: 10vh;
-    }
+		font-size: 2em;
+	}
 
-    .small {
-        font-size: 1.5em;
-    }
+	.small {
+		font-size: 1.5em;
+	}
 
 	.column {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-        align-items: center;
-        height: 100vh;
+		align-items: center;
+		height: 100vh;
+	}
+
+	.subColumn {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
 	}
 </style>
