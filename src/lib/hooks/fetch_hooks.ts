@@ -9,7 +9,7 @@ export async function getPlaylists(access_token: string) {
     let playlist_names = playlists.map((playlist: any) => playlist.name);
     return playlist_names;
 }
-
+//TODO: Change offset and limit to only get necessary playlist. 
 export async function getPlaylistOfTheDay(access_token: string, playlist_index: any) {
     let playlist_response = await fetch("https://api.spotify.com/v1/me/playlists?offset=0&limit=50", {
         headers: {

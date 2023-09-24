@@ -8,6 +8,7 @@ export async function getTokenFromCode(url :URL, cookies: Cookies, clientId: str
                         "Content-Type": "application/x-www-form-urlencoded",
                         "Authorization": "Basic " + btoa(`${clientId}:${clientSecret}`)
                     },
+                    //TODO: Update redirect uri for deployment
                     body: `grant_type=authorization_code&code=${url.searchParams.get('code')}&redirect_uri=http://localhost:5173`
                 });
             let token = await response.json();
