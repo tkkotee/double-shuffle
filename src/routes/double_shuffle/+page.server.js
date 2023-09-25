@@ -29,6 +29,15 @@ export async function load({ url, cookies }) {
     let playlist_index;
     // If data is returned, get the playlist of the day by indexing the user's
     // list of playlists with the database value.
+    if (uid == null) {
+        return {
+            playlist: {
+                name: "null uid",
+                img_url: "/",
+                spotify_url: "/"
+            }
+        };
+    }
     if (data != null) {
         playlist_index = data.playlist;
         // Get the Playlist

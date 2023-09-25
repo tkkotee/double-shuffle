@@ -34,7 +34,7 @@ export async function getPlaylistOfTheDay(access_token: string, playlist_index: 
         return {name: playlist_names[int], img_url: playlist_img_urls[int], spotify_url: playlist_spotify_urls[int], error: false};
     // Otherwise return error
     } else {
-        return {error: true};
+        return {name: "Api call error", img_url:"/", spotify_url:"/"};
     }
    
 }
