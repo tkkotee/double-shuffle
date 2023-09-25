@@ -26,6 +26,9 @@ export async function load({ url, cookies }): Promise<{ uid?: undefined; name?: 
         // If call succeeds, return users info
         if (user_response.status == 200) {
             let user = await user_response.json();
+            // Save user id to cookies. So that it can be used in subsequent 
+            // pages.
+            cookies.set('uid', user.id, { path: '/' });
             if (user.images != undefined) {
                 return { uid: user.id, name: user.display_name, img: user.images[0].url };
             } else {
