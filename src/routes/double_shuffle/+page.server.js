@@ -39,7 +39,8 @@ export async function load({ url, cookies }) {
         }
         return { playlist: playlist };
         // TODO: Make playlist random int between 0 and 50.
-    } else {
+    } else if (uid != null) {
+        // if no entry exists for user, create one.
         await supabase
             .from('Playlist')
             .insert({ uid: uid, playlist: 0 });
@@ -59,6 +60,8 @@ export async function load({ url, cookies }) {
             throw redirect(302, `/?code=${url.searchParams.get('code')}`);
         }
         return { playlist: playlist };
+    } else {
+        return {playlist: {error: true}};
     }
     // TODO: Handle general error
 
