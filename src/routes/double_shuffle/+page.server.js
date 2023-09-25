@@ -38,12 +38,13 @@ export async function load({ url, cookies }) {
             throw redirect(302, `/?code=${url.searchParams.get('code')}`);
         }
         return { playlist: playlist };
-        // TODO: Make playlist random int between 0 and 50.
     } else if (uid != null) {
+        let randomInt = Math.floor(Math.random() * (50 - 0 + 1));
+        // random int between 0 and 50
         // if no entry exists for user, create one.
         await supabase
             .from('Playlist')
-            .insert({ uid: uid, playlist: 0 });
+            .insert({ uid: uid, playlist: randomInt });
         // Read the supabase entry with the user's id.
         // Since all uid's are unique, can safely limit to 1 result.
         const { data } = await supabase
