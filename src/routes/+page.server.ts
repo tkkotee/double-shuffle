@@ -40,8 +40,7 @@ export async function load({ url, cookies }): Promise<{ uid?: undefined; name?: 
                         "Content-Type": "application/x-www-form-urlencoded",
                         "Authorization": "Basic " + btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)
                     },
-                    //TODO: Update redirect uri for deployment
-                    body: `grant_type=refresh_token&code=${refresh_token}&redirect_uri=http://localhost:5173`
+                    body: `grant_type=refresh_token&code=${refresh_token}&redirect_uri=http://${url.host}`
                 });
             // If call succeeds update access token
             if (response.status == 200) {

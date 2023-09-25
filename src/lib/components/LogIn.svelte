@@ -11,14 +11,13 @@
 	 * @type {string | undefined}
 	 */
 	export let img;
-
     /**
 	 * @param {string} name
 	 */
-    function getInitials(name) {
-        let nameList = name.split(' ');
-        return `${nameList[0]} ${nameList[1][0]}.`;
-    }
+	function getInitials(name) {
+		let nameList = name.split(' ');
+		return `${nameList[0]} ${nameList[1][0]}.`;
+	}
 </script>
 
 <div class="row">
@@ -36,9 +35,9 @@
 		font-size: 1.2em;
 	}
 
-    .profile {
-        border-radius: 50%;
-    }
+	.profile {
+		border-radius: 50%;
+	}
 
 	img {
 		margin-right: 0.75vw;

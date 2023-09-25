@@ -31,8 +31,7 @@ export async function load({ url, cookies }) {
                     "Content-Type": "application/x-www-form-urlencoded",
                     "Authorization": "Basic " + btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)
                 },
-                //TODO: Update redirect uri for deployment
-                body: `grant_type=refresh_token&code=${refresh_token}&redirect_uri=http://localhost:5173`
+                body: `grant_type=refresh_token&code=${refresh_token}&redirect_uri=http://${url.host}`
             });
         access_token = await getTokenFromRefresh(response, cookies);
         // Get user data using access token
