@@ -38,7 +38,7 @@
 {:else}
 <div class="mob_body">
 	<!--Top row of logo and log in button-->
-	<div class="row">
+	<div class="mob_row">
 		<MobHeader />
 		<div class="spacer" />
 		<MobLogIn {loggedIn} {name} {img} />
@@ -67,6 +67,12 @@
 		padding-top: 2.5vh;
 	}
 	.row {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.mob_row {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
