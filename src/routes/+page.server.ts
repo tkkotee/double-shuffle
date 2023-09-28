@@ -1,6 +1,8 @@
 import { CLIENT_ID, CLIENT_SECRET } from '$env/static/private';
 import { getTokenFromCode, getTokenFromRefresh } from '../lib/hooks/auth_hooks.js';
 
+export const ssr = false;
+
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ url, cookies }): Promise<{ uid?: undefined; name?: undefined; img?: undefined; } | { uid: string; name: string; img: string; } | undefined>{
     // IF USER NOT LOGGED IN 
