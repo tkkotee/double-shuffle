@@ -17,6 +17,8 @@
 
 <svelte:window bind:innerWidth={width} />
 
+<!--TODO: Implement consistent padding and sizing throughout app-->
+
 {#if width > 800}
 	<div class="body">
 		<!--Top row of logo and log in button-->
@@ -98,7 +100,7 @@
 		margin-top: 8vh;
 		margin-left: 10vw;
 		margin-right: 10vw;
-		margin-bottom: 10vh;
+		margin-bottom: 8vh;
 		text-align: center;
 	}
 

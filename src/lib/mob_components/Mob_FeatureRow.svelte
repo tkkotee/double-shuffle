@@ -16,7 +16,8 @@
 <!-- The row of cards with links to each of the double shuffle features-->
 <div class="row">
 	{#if loggedIn}
-		<a href="/double_shuffle?code={$page.url.searchParams.get('code')}" class="rowItem">
+    <!--TODO: Come up with cleverer way of conveying to double shuffle page that page is on mobile--> 
+		<a href="/double_shuffle?code={$page.url.searchParams.get('code')}&mobile=true" class="rowItem">
 			<FeatureCard
 				title="Playlist of the Day"
 				img={{ src: '/icons/calendar.png', alt: 'Calendar' }}
